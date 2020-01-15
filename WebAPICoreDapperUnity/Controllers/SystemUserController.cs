@@ -1,17 +1,28 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DataModel.Dtos.SystemUser;
+using DataModel.Share;
+using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using ServiceInterface;
 using Sunstige.DataModels;
 using System;
+using System.Net;
 using System.Threading.Tasks;
 
 namespace WebAPICoreDapperUnity.Controllers
 {
+	/// <summary>
+	/// 系統使用者 控制器
+	/// </summary>
 	[Route("api/[controller]")]
 	[ApiController]
 	public class SystemUserController : ControllerBase
 	{
 		private ISystemUserManager _systemUserManager;
 
+		/// <summary>
+		/// 系統使用者 控制器
+		/// </summary>
+		/// <param name="systemUserManager"></param>
 		public SystemUserController(ISystemUserManager systemUserManager)
 		{
 			this._systemUserManager = systemUserManager;
@@ -35,7 +46,30 @@ namespace WebAPICoreDapperUnity.Controllers
 			{
 				throw ex;
 			}
-			
+		}
+
+		/// <summary>
+		/// 新增與更新使用者
+		/// </summary>
+		/// <param name="InputModel"></param>
+		/// <returns></returns>
+		[HttpPost]
+		[Route("UpdateUser")]
+		public async Task<IActionResult> UpdateUser(SystemUserModel InputModel)
+		{
+			VerityResult responseResult = new VerityResult();
+
+			try
+			{
+				responseResult = await _systemUserManager.CreateOrUpdateUser(InputModel, "Sys");
+			}
+			catch (Exception ex)
+			{
+				responseResult.StatusCode = HttpStatusCode.InternalServerError;
+				responseResult.Message = JsonConvert.SerializeObject(ex.Message);
+			}
+			//return new ResponseMessageResult(Request.CreateResponse(responseResult.StatusCode, responseResult));
+			return NoContent();
 		}
 	}
 }

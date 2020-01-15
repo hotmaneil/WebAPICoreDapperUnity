@@ -1,10 +1,11 @@
 ﻿
 using System;
 using Dapper;
+using DataModel.Entities;
 
 namespace Sunstige.DataModels
 {
-	public class SystemUser             
+	public class SystemUser: DataChangelLogModel
 	{
 		//[Key]            
         public virtual int ID { get; set; }

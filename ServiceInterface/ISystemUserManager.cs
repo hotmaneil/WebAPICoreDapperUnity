@@ -1,4 +1,6 @@
-﻿using Sunstige.DataModels;
+﻿using DataModel.Dtos.SystemUser;
+using DataModel.Share;
+using Sunstige.DataModels;
 using System.Threading.Tasks;
 
 namespace ServiceInterface
@@ -12,6 +14,17 @@ namespace ServiceInterface
 		/// <param name="Id"></param>
 		/// <returns></returns>
 		Task<SystemUser> Get(int Id);
+		#endregion
+
+		#region MyRegion
+
+		/// <summary>
+		/// 新增或更新使用者
+		/// </summary>
+		/// <param name="InputModel"></param>
+		/// <param name="UserId"></param>
+		/// <returns></returns>
+		Task<VerityResult> CreateOrUpdateUser(SystemUserModel InputModel, string UserId);
 		#endregion
 	}
 }

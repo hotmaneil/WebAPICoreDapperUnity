@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WebAPICoreDapperUnity</name>
+    </assembly>
+    <members>
+        <member name="T:WebAPICoreDapperUnity.Controllers.SystemUserController">
+            <summary>
+            系統使用者 控制器
+            </summary>
+        </member>
+        <member name="M:WebAPICoreDapperUnity.Controllers.SystemUserController.#ctor(ServiceInterface.ISystemUserManager)">
+            <summary>
+            系統使用者 控制器
+            </summary>
+            <param name="systemUserManager"></param>
+        </member>
+        <member name="M:WebAPICoreDapperUnity.Controllers.SystemUserController.GetUser(System.Int32)">
+            <summary>
+            依照Id取得使用者
+            </summary>
+            <param name="Id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebAPICoreDapperUnity.Controllers.SystemUserController.UpdateUser(DataModel.Dtos.SystemUser.SystemUserModel)">
+            <summary>
+            新增與更新使用者
+            </summary>
+            <param name="InputModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebAPICoreDapperUnity.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            This method gets called by the runtime. Use this method to add services to the container.
+            </summary>
+            <param name="services"></param>
+        </member>
+        <member name="M:WebAPICoreDapperUnity.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">
+            <summary>
+            This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+            </summary>
+            <param name="app"></param>
+            <param name="env"></param>
+        </member>
+    </members>
+</doc>
