@@ -36,10 +36,24 @@ namespace WebAPICoreDapperUnity
 			//Ex:
 			//services.Configure<AppConfig>(this.Configuration);
 
+			string connectionName = Configuration.GetSection("ConnectionName").Value;
+			string connectionString = string.Empty;
+   
+			switch(connectionName)
+			{
+				case "SQLServer":
+					connectionString= Configuration.GetSection("MSSQLConnectionString").Value;
+					break;
+
+				case "MySQL":
+					connectionString = Configuration.GetSection("MySQLConnectionString").Value;
+					break;
+			}
+
 			services.AddDapperDBContext<SystemUserRepository>(options =>
 			{
-				options.ConnectionName = Configuration.GetSection("ConnectionName").Value;
-				options.ConnectionString = Configuration.GetSection("MySQLConnectionString").Value;
+				options.ConnectionName = connectionName;
+				options.ConnectionString = connectionString;
 			});
 
 			// Register the Swagger generator, defining 1 or more Swagger documents

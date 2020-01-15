@@ -55,7 +55,7 @@ namespace WebAPICoreDapperUnity.Controllers
 		/// <returns></returns>
 		[HttpPost]
 		[Route("UpdateUser")]
-		public async Task<IActionResult> UpdateUser(SystemUserModel InputModel)
+		public async Task<ActionResult<VerityResult>> UpdateUser(SystemUserModel InputModel)
 		{
 			VerityResult responseResult = new VerityResult();
 
@@ -68,8 +68,7 @@ namespace WebAPICoreDapperUnity.Controllers
 				responseResult.StatusCode = HttpStatusCode.InternalServerError;
 				responseResult.Message = JsonConvert.SerializeObject(ex.Message);
 			}
-			//return new ResponseMessageResult(Request.CreateResponse(responseResult.StatusCode, responseResult));
-			return NoContent();
+			return responseResult;
 		}
 	}
 }
